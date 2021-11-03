@@ -1,0 +1,8 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "number-leading-zero": "never",
+    "color-hex-case": "upper",
+    "color-hex-length": "long"
+  }
+}
