@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import './styles.scss';
+import './Game.scss';
 
-class Game extends Component {
-
-  render() {
-    return (
-      <>
-        <h1>Game</h1>
-      </>
-    );
-  }
-}
+const Game = () => {
+  return (
+    <div>
+      <h1>Game</h1>
+    </div>
+  );
+};
 
 export default Game;

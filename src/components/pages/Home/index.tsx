@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import './styles.scss';
+import './Home.scss';
 
-class Home extends Component {
-
-  render() {
-    return (
-      <>
-        <h1>Home</h1>
-      </>
-    );
-  }
-}
+const Home = () => {
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  );
+};
 
 export default Home;
