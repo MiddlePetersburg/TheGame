@@ -5,14 +5,16 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "airbnb"
+    "airbnb",
+    "airbnb-typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 13,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "plugins": [
@@ -31,7 +33,16 @@
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "prefer-promise-reject-errors": "off",
-    "react/jsx-filename-extension": [ "error", { "extensions": [".ts", ".tsx", ".js"] }],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js"
+        ]
+      }
+    ],
     "react/jsx-wrap-multilines": "off",
     "react/no-unused-state": "off",
     "react/destructuring-assignment": "off",
