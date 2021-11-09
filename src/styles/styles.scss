@@ -1,6 +1,10 @@
 @import "reset";
 @import "variables";
 
-h1 {
-  color: $dummy !important;
+html,
+body,
+#root {
+  padding: 0;
+  height: 100vh;
+  margin: 0 auto;
 }
