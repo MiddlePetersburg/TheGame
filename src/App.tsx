@@ -2,20 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Routes
-import  RouterPaths from './routes/index';
+import RouterPaths from './routes';
 
-//Components
+// Components
 
-import {Navigation} from './components/ui/navigation/index'
+import { Navigation } from './components/ui/navigation';
 
 const App = () => (
   <>
     <Router>
-      <Navigation/>
+      <Navigation />
       <Routes>
-        {RouterPaths.map((route, idx) =>(
-          <Route key={idx} path={route.path} element={route.component()} />
-        ))}
+        {RouterPaths.map((route) => (
+          <Route key={route.meta.id} path={route.path} element={route.component()} />)) }
       </Routes>
     </Router>
   </>

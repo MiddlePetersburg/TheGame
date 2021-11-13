@@ -1,49 +1,66 @@
-import Home from "../components/pages/Home";
-import Login from "../components/pages/Login";
-import Signup from "../components/pages/Signup";
-import Game from "../components/pages/Game";
-import Profile from "../components/pages/Profile";
-import Board from "../components/pages/Board";
+import * as Icons from '@mui/icons-material';
+import Home from '../components/pages/Home';
+import Login from '../components/pages/Login';
+import Signup from '../components/pages/Signup';
+import Game from '../components/pages/Game';
+import Profile from '../components/pages/Profile';
+import Board from '../components/pages/Board';
 
-//Icons
-
-import * as Icons from "@mui/icons-material";
+// Icons
 
 export default [
   {
-    path: "/",
+    path: '/',
     component: Home,
     icon: Icons.Home,
-    text: "Домашняя страница",
+    text: 'Домашняя страница',
+    meta: {
+      id: 1,
+    },
   },
   {
-    path: "/login",
+    path: '/login',
     component: Login,
     icon: Icons.Login,
-    text: "Логин",
+    text: 'Логин',
+    meta: {
+      id: 2,
+    },
   },
   {
-    path: "/signup",
+    path: '/signup',
     component: Signup,
     icon: Icons.AppRegistration,
-    text: "Регистрация",
+    text: 'Регистрация',
+    meta: {
+      id: 3,
+    },
   },
   {
-    path: "/game",
+    path: '/game',
     component: Game,
-    icon: "SportsEsports",
-    text: "Игра",
+    icon: 'SportsEsports',
+    text: 'Игра',
+    meta: {
+      id: 4,
+    },
   },
   {
-    path: "/profile",
+    path: '/profile',
     component: Profile,
-    icon: "Person",
-    text: "Аккаунт",
+    icon: 'Person',
+    text: 'Аккаунт',
+    meta: {
+      id: 5,
+    },
   },
   {
-    path: "/board",
+    path: '/board',
     component: Board,
     icon: Icons.Dashboard,
-    text: "Борд",
+    text: 'Борд',
+    meta: {
+      id: 6,
+    },
   },
 ];
