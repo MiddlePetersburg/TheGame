@@ -22,6 +22,9 @@ export class Game {
   // Cursor
   private readonly cursorState: ICursor;
 
+  // Listeners
+  private animationListener: number | undefined;
+
   constructor(canvasRef: HTMLCanvasElement) {
     // init canvas
     this.canvas = canvasRef;
@@ -42,20 +45,36 @@ export class Game {
       if (this.ctx) {
         Grid.clear(this.ctx, this.canvasWidth, this.canvasHeight);
         Grid.draw(this.grid, this.cursorState);
-        requestAnimationFrame(animation);
+        this.animationListener = requestAnimationFrame(animation);
       }
     };
     animation();
   }
 
   private initCursorHandlers(): void {
-    this.canvas.addEventListener('mousemove', ($event: MouseEvent) => {
-      this.cursorState.x = $event.x - this.canvasPosition.left;
-      this.cursorState.y = $event.y - this.canvasPosition.top;
-    });
-    this.canvas.addEventListener('mouseleave', () => {
-      this.cursorState.x = undefined;
-      this.cursorState.y = undefined;
-    });
+    this.canvas.addEventListener('mousemove',
+      ($event: MouseEvent) => this.mouseMoveHandler($event));
+    this.canvas.addEventListener('mouseleave',
+      () => this.mouseLeaveHandler);
+  }
+
+  private mouseMoveHandler($event: MouseEvent) {
+    this.cursorState.x = $event.x - this.canvasPosition.left;
+    this.cursorState.y = $event.y - this.canvasPosition.top;
+  }
+
+  private mouseLeaveHandler() {
+    this.cursorState.x = undefined;
+    this.cursorState.y = undefined;
+  }
+
+  public destroyGame() {
+    if (this.animationListener) {
+      cancelAnimationFrame(this.animationListener);
+    }
+    this.canvas.removeEventListener('mousemove',
+      ($event: MouseEvent) => this.mouseMoveHandler($event));
+    this.canvas.removeEventListener('mouseleave',
+      () => this.mouseLeaveHandler);
   }
 }

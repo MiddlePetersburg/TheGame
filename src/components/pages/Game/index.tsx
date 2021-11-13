@@ -6,11 +6,15 @@ const GamePage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    let gameInstance: Game;
     const canvasInstance = canvasRef.current;
     if (canvasInstance) {
-      const game = new Game(canvasInstance);
-      game.start();
+      gameInstance = new Game(canvasInstance);
+      gameInstance.start();
     }
+    return () => {
+      gameInstance.destroyGame();
+    };
   }, []);
 
   return (
