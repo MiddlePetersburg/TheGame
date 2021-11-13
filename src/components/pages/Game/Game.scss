@@ -1,0 +1,13 @@
+.game-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+
+  canvas {
+    background-color: white;
+    border-radius: .625rem;
+    cursor: pointer;
+  }
+}
