@@ -1,6 +1,7 @@
 import { Grid } from './game-grid';
 import { ICursor } from './models/cursor-position.interface';
 import { GridCell } from './game-grid-cell';
+import { Defender } from './game-defender';
 
 export class Game {
   // canvas
@@ -21,6 +22,12 @@ export class Game {
 
   // Cursor
   private readonly cursorState: ICursor;
+
+  // Energy
+  private availableEnergy: number = 60;
+
+  // Defenders
+  private defenders: Defender[] = [];
 
   // Listeners
   private animationListener: number | undefined;
@@ -45,6 +52,8 @@ export class Game {
       if (this.ctx) {
         Grid.clear(this.ctx, this.canvasWidth, this.canvasHeight);
         Grid.draw(this.grid, this.cursorState);
+        this.drawToolbar();
+        this.drawDefenders();
         this.animationListener = requestAnimationFrame(animation);
       }
     };
@@ -56,6 +65,48 @@ export class Game {
       ($event: MouseEvent) => this.mouseMoveHandler($event));
     this.canvas.addEventListener('mouseleave',
       () => this.mouseLeaveHandler);
+    this.canvas.addEventListener('click',
+      () => this.buildDefenderHandler());
+  }
+
+  private drawDefenders() {
+    this.defenders.forEach((defender) => defender.draw());
+  }
+
+  private drawToolbar() {
+    this.ctx.fillStyle = 'grey';
+    this.ctx.fillRect(0, this.canvasHeight - this.gridCellSize,
+      this.canvasWidth, this.gridCellSize);
+    this.ctx.fillStyle = 'black';
+    this.ctx.font = '25px Roboto';
+    this.ctx.fillText(
+      `Energy: ${this.availableEnergy}`,
+      20, this.canvasHeight - this.gridCellSize / 2,
+    );
+  }
+
+  private buildDefenderHandler() {
+    if (typeof this.cursorState?.x === 'number' && typeof this.cursorState?.y === 'number') {
+      const gridPositionX = this.cursorState.x - (this.cursorState.x % this.gridCellSize);
+      const gridPositionY = this.cursorState.y - (this.cursorState.y % this.gridCellSize);
+
+      // if outside the grid
+      if (gridPositionY < 0 || gridPositionY >= this.canvasHeight - this.gridCellSize) {
+        return;
+      }
+      // if defender on this cell already exists
+      for (let i = 0; i < this.defenders.length; i++) {
+        if (this.defenders[i].x === gridPositionX && this.defenders[i].y === gridPositionY) {
+          return;
+        }
+      }
+
+      if (this.availableEnergy >= Defender.price) {
+        const defender = new Defender(this.ctx, gridPositionX, gridPositionY, this.gridCellSize);
+        this.defenders.push(defender);
+        this.availableEnergy -= Defender.price;
+      }
+    }
   }
 
   private mouseMoveHandler($event: MouseEvent) {
@@ -76,5 +127,7 @@ export class Game {
       ($event: MouseEvent) => this.mouseMoveHandler($event));
     this.canvas.removeEventListener('mouseleave',
       () => this.mouseLeaveHandler);
+    this.canvas.removeEventListener('click',
+      () => this.buildDefenderHandler());
   }
 }
