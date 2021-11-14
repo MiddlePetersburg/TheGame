@@ -1,4 +1,3 @@
-import * as Icons from '@mui/icons-material';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import Signup from '../components/pages/Signup';
@@ -12,7 +11,7 @@ export default [
   {
     path: '/',
     component: Home,
-    icon: Icons.Home,
+    icon: 'Home',
     text: 'Домашняя страница',
     meta: {
       id: 1,
@@ -21,7 +20,7 @@ export default [
   {
     path: '/login',
     component: Login,
-    icon: Icons.Login,
+    icon: 'Login',
     text: 'Логин',
     meta: {
       id: 2,
@@ -30,7 +29,7 @@ export default [
   {
     path: '/signup',
     component: Signup,
-    icon: Icons.AppRegistration,
+    icon: 'AppRegistration',
     text: 'Регистрация',
     meta: {
       id: 3,
@@ -57,7 +56,7 @@ export default [
   {
     path: '/board',
     component: Board,
-    icon: Icons.Dashboard,
+    icon: 'Dashboard',
     text: 'Борд',
     meta: {
       id: 6,
