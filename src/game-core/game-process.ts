@@ -96,7 +96,7 @@ export class Game {
       }
       // if defender on this cell already exists
       for (let i = 0; i < this.defenders.length; i++) {
-        if (this.defenders[i].x === gridPositionX && this.defenders[i].y === gridPositionY) {
+        if (this.defenders[i].x1 === gridPositionX && this.defenders[i].y1 === gridPositionY) {
           return;
         }
       }
@@ -123,11 +123,8 @@ export class Game {
     if (this.animationListener) {
       cancelAnimationFrame(this.animationListener);
     }
-    this.canvas.removeEventListener('mousemove',
-      ($event: MouseEvent) => this.mouseMoveHandler($event));
-    this.canvas.removeEventListener('mouseleave',
-      () => this.mouseLeaveHandler);
-    this.canvas.removeEventListener('click',
-      () => this.buildDefenderHandler());
+    this.canvas.removeEventListener('mousemove', this.mouseMoveHandler);
+    this.canvas.removeEventListener('mouseleave', this.mouseLeaveHandler);
+    this.canvas.removeEventListener('click', this.buildDefenderHandler);
   }
 }
