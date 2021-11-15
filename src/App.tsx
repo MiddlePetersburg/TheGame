@@ -9,7 +9,7 @@ import RouterPaths from './routes';
 import { Navigation } from './components/ui/navigation';
 
 const App = () => (
-  <>
+  <main className="main">
     <Router>
       <Navigation />
       <Routes>
@@ -17,7 +17,7 @@ const App = () => (
           <Route key={route.meta.id} path={route.path} element={route.component()} />)) }
       </Routes>
     </Router>
-  </>
+  </main>
 );
 
 export default App;
