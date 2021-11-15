@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/MiddlePetersburg/TheGame#readme",
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
     "copy-webpack-plugin": "^9.0.1",
