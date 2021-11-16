@@ -1,7 +1,8 @@
 import { Grid, mouseLeaveHandler, mouseMoveHandler } from './grid/grid';
 import GameStore from './store/game-store';
-import { buildDefender } from './entities/defender';
+import { buildDefender, drawDefenders } from './entities/defender';
 import { Toolbar } from './toolbar/toolbar';
+import { drawEnemies } from './entities/enemy';
 
 export class Game {
   // Listeners
@@ -18,18 +19,37 @@ export class Game {
 
   public start() {
     const animation = () => {
-      const { ctx } = GameStore;
+      const { ctx, isGameOver } = GameStore;
       if (ctx) {
         // clear canvas
         Grid.clearCanvas();
         // draw game
         Grid.draw();
         Toolbar.draw();
-        Game.drawDefenders();
-        this.animationListener = requestAnimationFrame(animation);
+        drawDefenders();
+        drawEnemies();
+        // frames
+        // handle gameOver
+        if (!isGameOver) {
+          this.animationListener = requestAnimationFrame(animation);
+        } else {
+          Game.gameOver();
+        }
+        GameStore.frameCount++;
       }
     };
     animation();
+  }
+
+  private static gameOver() {
+    const { ctx } = GameStore;
+    if (ctx) {
+      Grid.clearCanvas();
+      Toolbar.draw();
+      ctx.fillStyle = 'black';
+      ctx.font = '100px Patrick Hand, cursive';
+      ctx.fillText('GAME OVER', 230, 300);
+    }
   }
 
   public destroyGame() {
@@ -51,11 +71,6 @@ export class Game {
       canvas.addEventListener('mouseleave', mouseLeaveHandler);
       canvas.addEventListener('click', buildDefender);
     }
-  }
-
-  private static drawDefenders() {
-    const { defenders } = GameStore;
-    defenders.forEach((defender) => defender.draw());
   }
 
   private static initStore(canvasRef: HTMLCanvasElement) {

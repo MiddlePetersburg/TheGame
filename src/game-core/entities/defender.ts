@@ -24,10 +24,15 @@ export class Defender {
   }
 
   public draw() {
-    this.canvas.fillStyle = 'green';
+    this.canvas.fillStyle = 'black';
     this.canvas.fillRect(this.x1, this.y1, this.x2, this.y2);
   }
 }
+
+export const drawDefenders = () => {
+  const { defenders } = GameStore;
+  defenders.forEach((defender) => defender.draw());
+};
 
 export const buildDefender = () => {
   const {
