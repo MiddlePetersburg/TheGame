@@ -17,7 +17,6 @@ const Signup = () => {
   return (
     (
       <Container
-        component="main"
         maxWidth="xs"
         sx={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', justifyContent: 'center',

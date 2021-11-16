@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import {
-  Avatar, Box, Container, CssBaseline, Typography, TextField, Button,
+  Avatar, Box, CssBaseline, Typography, TextField, Button,
 } from '@mui/material';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
@@ -15,15 +15,12 @@ const Login = () => {
   };
 
   return (
-    <Container
-      maxWidth="xs"
-      component="main"
-      sx={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',
-      }}
-    >
+    <>
       <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{
+        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+      }}
+      >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <VpnKeyIcon />
         </Avatar>
@@ -63,7 +60,7 @@ const Login = () => {
           {new Date().getFullYear()}
         </Typography>
       </Box>
-    </Container>
+    </>
   );
 };
 
