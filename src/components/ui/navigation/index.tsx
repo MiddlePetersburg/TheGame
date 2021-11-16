@@ -25,6 +25,7 @@ export const Navigation:React.FC = () => {
         <Drawer
           open={state.show}
           onClose={toggleDrawer(false)}
+          className="navigation__drawer"
         >
           <Box
             role="presentation"

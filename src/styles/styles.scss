@@ -1,5 +1,23 @@
 @import "reset";
 @import "variables";
+@import "fonts";
+@import "colors";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter-Bold";
+}
+
+a {
+  font-family: "Inter-Medium";
+}
+
+p {
+  font-family: "Inter-Light";
+}
 
 html,
 body,
@@ -7,4 +25,7 @@ body,
   padding: 0;
   height: 100vh;
   margin: 0 auto;
+}
+.main {
+  background-color: $light_grey_clr;
 }
