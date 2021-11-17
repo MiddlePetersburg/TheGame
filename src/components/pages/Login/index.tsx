@@ -18,7 +18,7 @@ const Login = () => {
     <>
       <CssBaseline />
       <Box sx={{
-        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', alignItems: 'center',
       }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
