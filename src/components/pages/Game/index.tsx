@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Game } from '../../../game-core/game-process';
+import { Game } from '../../../game-core/main';
 import './Game.scss';
 
 const GamePage = () => {

@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background: radial-gradient(#4E54C8, #8F94FB);
 
   canvas {
-    background-color: white;
+    background-color: #2ECC71;
     border-radius: .625rem;
     cursor: pointer;
   }
