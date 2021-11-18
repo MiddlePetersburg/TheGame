@@ -1,4 +1,5 @@
 import GameStore from '../store/game-store';
+import { DefenderShot } from './defender-shot';
 
 export class Defender {
   private canvas: CanvasRenderingContext2D;
@@ -13,6 +14,10 @@ export class Defender {
 
   public static price: number = 20;
 
+  private shotInterval: number = 100;
+
+  private frame: number = 0;
+
   constructor(x: number, y: number) {
     const { ctx, gridCellSize } = GameStore;
     const padding = 8;
@@ -24,6 +29,15 @@ export class Defender {
   }
 
   public draw() {
+    const { gridCellSize, enemiesLineNumbers } = GameStore;
+    this.frame++;
+    if (this.frame % this.shotInterval === 0) {
+      const isEnemyExistOnThisLine = enemiesLineNumbers
+        .indexOf(Math.floor(this.y1 / gridCellSize)) > -1;
+      if (isEnemyExistOnThisLine) {
+        GameStore.defendersShots.push(new DefenderShot(this.x1 + 70, this.y1 + 50));
+      }
+    }
     this.canvas.fillStyle = 'black';
     this.canvas.fillRect(this.x1, this.y1, this.x2, this.y2);
   }
@@ -48,7 +62,7 @@ export const buildDefender = () => {
     const gridPositionY = cursorState.y - (cursorState.y % gridCellSize);
 
     // if outside the grid
-    if (gridPositionY < 0 || gridPositionY >= canvasHeight - gridCellSize) {
+    if (gridPositionY < gridCellSize || gridPositionY >= canvasHeight - gridCellSize) {
       return;
     }
     // if defender on this cell already exists

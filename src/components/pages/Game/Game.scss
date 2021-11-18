@@ -6,7 +6,9 @@
   background: radial-gradient(#4E54C8, #8F94FB);
 
   canvas {
-    background-color: #2ECC71;
+    background-size: cover;
+    background-image: url(../../../assets/game/background.jpg);
+    background-position: center -60px;
     border-radius: .625rem;
     cursor: pointer;
   }

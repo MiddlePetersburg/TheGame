@@ -29,6 +29,8 @@ export class Toolbar {
       ctx.fillText(`Energy \u26A1: ${energy}`, 200, toolbarBaseLine);
       // draw score
       ctx.fillText(`Score \u{1F3C6}: ${score}`, 400, toolbarBaseLine);
+      // draw pause/play
+      ctx.fillText('Pause: \u{23F8}', 600, toolbarBaseLine);
     }
   }
 }

@@ -3,6 +3,7 @@ import GameStore from './store/game-store';
 import { buildDefender, drawDefenders } from './entities/defender';
 import { Toolbar } from './toolbar/toolbar';
 import { drawEnemies } from './entities/enemy';
+import { drawDefendersShots } from './entities/defender-shot';
 
 export class Game {
   // Listeners
@@ -27,6 +28,7 @@ export class Game {
         Grid.draw();
         Toolbar.draw();
         drawDefenders();
+        drawDefendersShots();
         drawEnemies();
         // frames
         // handle gameOver
@@ -48,7 +50,7 @@ export class Game {
       Toolbar.draw();
       ctx.fillStyle = 'black';
       ctx.font = '100px Patrick Hand, cursive';
-      ctx.fillText('GAME OVER', 230, 300);
+      ctx.fillText('GAME OVER', 300, 350);
     }
   }
 

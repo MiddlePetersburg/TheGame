@@ -2,6 +2,7 @@ import { Defender } from '../entities/defender';
 import { ICursor } from '../models/cursor-position.interface';
 import { GridCell } from '../grid/grid-cell';
 import { Enemy } from '../entities/enemy';
+import { DefenderShot } from '../entities/defender-shot';
 
 class GameStore {
   // Canvas
@@ -40,6 +41,8 @@ class GameStore {
 
   public isGameOver = false;
 
+  public isPause = false;
+
   public score = 0;
 
   // HEALTH
@@ -51,10 +54,14 @@ class GameStore {
   // Defenders
   public defenders: Defender[] = [];
 
+  public defendersShots: DefenderShot[] = [];
+
   // Enemies
   public enemies: Enemy[] = [];
 
-  public enemyInterval: number = 100;
+  public enemiesLineNumbers: number[] = [];
+
+  public enemyInterval: number = 300;
 
   // Cursor
   public cursorState: ICursor = { x: undefined, y: undefined };

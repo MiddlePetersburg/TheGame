@@ -19,7 +19,7 @@ const GamePage = () => {
 
   return (
     <div className="game-container">
-      <canvas ref={canvasRef} width={900} height={600} />
+      <canvas ref={canvasRef} width={1000} height={700} />
     </div>
   );
 };

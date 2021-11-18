@@ -12,7 +12,7 @@ export class Grid {
       gridCellSize,
     } = GameStore;
 
-    for (let y = 0; y < canvasHeight; y += gridCellSize) {
+    for (let y = gridCellSize; y < canvasHeight - gridCellSize; y += gridCellSize) {
       for (let x = 0; x < canvasWidth; x += gridCellSize) {
         gameGrid.push(new GridCell(x, y));
       }
