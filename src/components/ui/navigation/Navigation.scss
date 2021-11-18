@@ -1,17 +1,36 @@
+@import "../../../styles/colors.scss";
+
+.navigation {
+  background-color: $white_clr;
+  border-bottom: 1px solid $light_border_clr;
+  position: relative;
+  z-index: 10;
+}
+
 .navigation-list {
   display: grid;
   grid-auto-rows: 2rem;
+}
 
-  .navigation-list__item {
-    padding: 0;
+.navigation-list__link {
+  padding: 0 1rem;
+  width: 100%;
+  color: $light_grey_clr;
+  font-size: 14px;
+}
+
+.MuiModal-root {
+  .MuiPaper-root {
+    background-color: $base_clr_2;
   }
 
-  .navigation-list__link {
-    padding: 0 1rem;
-    width: 100%;
+  .navigation-list__item {
+    transition-duration: 0.3s;
+    transition-property: background-color;
+    padding: 0;
 
-    &:visited {
-      color: initial;
+    &:hover {
+      background-color: black;
     }
   }
 }
