@@ -18,28 +18,27 @@ export const Navigation: React.FC = () => {
     setState({ ...state, show: open });
   }, [state.show]);
   return (
-    <div>
-      <>
-        <Button onClick={toggleDrawer(true)}><Menu /></Button>
-        <Drawer
-          open={state.show}
-          onClose={toggleDrawer(false)}
+    <nav className="navigation">
+      <Button onClick={toggleDrawer(true)}><Menu/></Button>
+      <Drawer
+        open={state.show}
+        onClose={toggleDrawer(false)}
+        className="navigation__drawer"
+      >
+        <Box
+          role="presentation"
+          onClick={toggleDrawer(false)}
         >
-          <Box
-            role="presentation"
-            onClick={toggleDrawer(false)}
-          >
-            <List className="navigation-list">
-              {RoutesCollection.map((el) => (
-                <ListItem className="navigation-list__item" button key={el.meta.id}>
-                  <Link className="navigation-list__link" to={el.path}>{el.text}</Link>
-                </ListItem>
-              ))}
-            </List>
-            <Divider />
-          </Box>
-        </Drawer>
-      </>
-    </div>
+          <List className="navigation-list">
+            {RoutesCollection.map((el) => (
+              <ListItem className="navigation-list__item" button key={el.meta.id}>
+                <Link className="navigation-list__link" to={el.path}>{el.text}</Link>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Box>
+      </Drawer>
+    </nav>
   );
 };

@@ -1,0 +1,25 @@
+@import "../../../styles/colors.scss";
+
+.profile {
+  padding: 2rem;
+  display: grid;
+  row-gap: 2rem;
+
+  .profile__tab {
+    background-color: $white_clr;
+    padding: 30px 28px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .tab__right {
+    display: grid;
+    row-gap: 20px;
+  }
+
+  .tab__row {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: 1fr auto;
+  }
+}
