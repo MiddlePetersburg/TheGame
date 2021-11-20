@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RouterPaths from './routes';
 
 // Components
-
 import { Navigation } from './components/ui/navigation';
 
 const App = () => (
@@ -15,7 +14,8 @@ const App = () => (
       <main className="main">
         <Routes>
           {RouterPaths.map((route) => (
-            <Route key={route.meta.id} path={route.path} element={route.component()} />)) }
+            <Route key={route.meta.id} path={route.path} element={<route.component />} />
+          ))}
         </Routes>
       </main>
     </Router>

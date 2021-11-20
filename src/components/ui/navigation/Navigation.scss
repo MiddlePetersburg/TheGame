@@ -9,28 +9,24 @@
 
 .navigation-list {
   display: grid;
-  grid-auto-rows: 2rem;
+  align-items: center;
 }
 
 .navigation-list__link {
-  padding: 0 1rem;
   width: 100%;
   color: $light_grey_clr;
-  font-size: 14px;
+  font-size: 16px;
+  transition: background-color .3s;
+  padding: .7125rem 2rem;
+  line-height: 1;
+
+  &:hover {
+    background-color: rgba(#000000, .325);
+  }
 }
 
 .MuiModal-root {
   .MuiPaper-root {
     background-color: $base_clr_2;
-  }
-
-  .navigation-list__item {
-    transition-duration: 0.3s;
-    transition-property: background-color;
-    padding: 0;
-
-    &:hover {
-      background-color: black;
-    }
   }
 }

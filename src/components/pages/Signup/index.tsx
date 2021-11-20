@@ -19,7 +19,7 @@ const Signup = () => {
       <Container
         maxWidth="xs"
         sx={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', justifyContent: 'center',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', justifyContent: 'center',
         }}
       >
         <CssBaseline />
