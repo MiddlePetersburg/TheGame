@@ -1,9 +1,9 @@
 import GameStore from '../store/game-store';
 
 export class Enemy {
-  public health: number = 100;
+  public health: number = 50;
 
-  public readonly speed: number = 0.5;
+  public speed: number = 0.5;
 
   public x1: number;
 
@@ -31,7 +31,7 @@ export class Enemy {
 
   public isImageUploaded = false;
 
-  constructor(vPosition: number) {
+  constructor(vPosition: number, level: number) {
     const { gridCellSize, canvasWidth } = GameStore;
     this.enemyLineNumber = vPosition / gridCellSize;
     this.x1 = canvasWidth;
@@ -43,19 +43,19 @@ export class Enemy {
     this.enemyImage.onload = () => {
       this.isImageUploaded = true;
     };
+    this.speed *= level;
+    this.health += level * 40;
   }
 
   draw() {
     const { ctx } = GameStore;
     if (ctx) {
+      // Enemy Health
       this.x1 -= this.speed;
       ctx.fillStyle = 'red';
       ctx.font = '30px Patrick Hand';
-      ctx.fillText(
-        this.health.toString(),
-        this.x1 + 30,
-        this.y1,
-      );
+      ctx.fillText(this.health.toString(), this.x1 + 30, this.y1);
+      // Choose Sprite (Animation)
       if (this.frameCount % 5 === 0) {
         if (this.frameX < this.maxFrame) {
           this.frameX++;
@@ -63,6 +63,7 @@ export class Enemy {
           this.frameX = this.minFrame;
         }
       }
+
       if (this.isImageUploaded) {
         ctx.drawImage(
           this.enemyImage,
@@ -91,6 +92,7 @@ export const drawEnemies = () => {
     frameCount,
     gridCellSize,
     enemyInterval,
+    level,
   } = GameStore;
 
   for (let i = 0; i < enemies.length; i++) {
@@ -103,7 +105,7 @@ export const drawEnemies = () => {
         GameStore.enemiesLineNumbers.splice(i, 1);
       }
 
-      GameStore.energy += 20;
+      GameStore.energy += 10;
       GameStore.score += 5;
       GameStore.enemies.splice(i, 1);
       i--;
@@ -119,7 +121,6 @@ export const drawEnemies = () => {
   if (frameCount % enemyInterval === 0) {
     const vPosition = Math.floor(Math.random() * 5 + 1) * gridCellSize;
     GameStore.enemiesLineNumbers.push(vPosition / gridCellSize);
-    GameStore.enemies.push(new Enemy(vPosition));
-    GameStore.frameCount = 0;
+    GameStore.enemies.push(new Enemy(vPosition, level));
   }
 };

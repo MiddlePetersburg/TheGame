@@ -5,24 +5,25 @@ export class DefenderShot {
 
   public y: number;
 
-  public width: number = 10;
+  public width: number = 6;
 
-  public height: number = 10;
+  public height: number = 6;
 
-  public power: number = 25;
+  public power: number = 0;
 
   public speed: number = 5;
 
-  constructor(x: number, y: number) {
+  constructor(x: number, y: number, level: number) {
     this.x = x;
     this.y = y;
+    this.power += level * 15;
   }
 
   public draw() {
     const { ctx } = GameStore;
     if (ctx) {
       this.x += this.speed;
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = '#6DD5ED';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
       ctx.fill();

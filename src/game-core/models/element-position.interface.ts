@@ -1,4 +1,4 @@
-export interface ICursor {
+export interface IElementPosition {
   x: number;
   y: number;
   width: number;

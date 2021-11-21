@@ -38,6 +38,7 @@ class GameStore {
   public grid: GridCell[] | undefined;
 
   // Game
+  public isStarted = false;
 
   public isGameOver = false;
 
@@ -45,11 +46,13 @@ class GameStore {
 
   public score = 0;
 
+  public level = 1;
+
   // HEALTH
   public health: number = 3;
 
   // Energy
-  public energy: number = 60;
+  public energy: number = 30;
 
   // Defenders
   public defenders: Defender[] = [];
@@ -64,10 +67,34 @@ class GameStore {
   public enemyInterval: number = 300;
 
   // Cursor
-  public cursorState: ICursor = { x: undefined, y: undefined };
+  public cursorState: ICursor = {
+    x: 0,
+    y: 0,
+    width: 0.5,
+    height: 0.5,
+  };
 
   // Frame
   public frameCount: number = 0;
+
+  public resetState() {
+    this.restart();
+    this.isStarted = false;
+  }
+
+  public restart() {
+    this.isStarted = true;
+    this.isGameOver = false;
+    this.isPause = false;
+    this.score = 0;
+    this.health = 3;
+    this.level = 1;
+    this.energy = 60;
+    this.defenders = [];
+    this.enemies = [];
+    this.defendersShots = [];
+    this.enemiesLineNumbers = [];
+  }
 }
 
 export default new GameStore();
