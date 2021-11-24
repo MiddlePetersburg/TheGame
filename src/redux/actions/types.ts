@@ -1,3 +1,6 @@
-const actions = {
-  SET_STATUS: 'SET_STATUS',
+export const types = {
+  SET_USER: 'SET_USER',
+  USER_CHANGE_FIELD: 'USER_CHANGE_FIELD',
+  SET_ERROR: 'SET_ERROR',
+  SET_ALL_USER_FIELDS: 'SET_ALL_USER_FIELDS',
 };

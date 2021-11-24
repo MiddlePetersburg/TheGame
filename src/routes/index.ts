@@ -1,16 +1,16 @@
-import Home from '../components/pages/Home';
-import Login from '../components/pages/Login';
-import Signup from '../components/pages/Signup';
-import Game from '../components/pages/Game';
-import Profile from '../components/pages/Profile';
-import Board from '../components/pages/Board';
+import HomeContainer from '../containers/HomeContainer';
+import LoginContainer from '../containers/LoginContainer';
+import SignupContainer from '../containers/SignupContainer';
+import GameContainer from '../containers/GameContainer';
+import ProfileContainer from '../containers/ProfileContainer';
+import BoardContainer from '../containers/BoardContainer';
 
 // Icons
 
 export default [
   {
     path: '/',
-    component: Home,
+    component: HomeContainer,
     icon: 'Home',
     text: 'Домашняя страница',
     meta: {
@@ -19,7 +19,7 @@ export default [
   },
   {
     path: '/login',
-    component: Login,
+    component: LoginContainer,
     icon: 'Login',
     text: 'Логин',
     meta: {
@@ -28,7 +28,7 @@ export default [
   },
   {
     path: '/signup',
-    component: Signup,
+    component: SignupContainer,
     icon: 'AppRegistration',
     text: 'Регистрация',
     meta: {
@@ -37,7 +37,7 @@ export default [
   },
   {
     path: '/game',
-    component: Game,
+    component: GameContainer,
     icon: 'SportsEsports',
     text: 'Игра',
     meta: {
@@ -46,7 +46,7 @@ export default [
   },
   {
     path: '/profile',
-    component: Profile,
+    component: ProfileContainer,
     icon: 'Person',
     text: 'Аккаунт',
     meta: {
@@ -55,7 +55,7 @@ export default [
   },
   {
     path: '/board',
-    component: Board,
+    component: BoardContainer,
     icon: 'Dashboard',
     text: 'Борд',
     meta: {
