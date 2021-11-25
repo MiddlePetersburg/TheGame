@@ -10,6 +10,14 @@ whitePanelImg.src = './assets/game/panelW.png';
 const buttonImg = new Image();
 buttonImg.src = './assets/game/buttonW.png';
 
+// create White Button Instance
+const brownButton = new Image();
+brownButton.src = './assets/game/buttonB.png';
+
+// create Game Image Instance
+const gameImg = new Image();
+gameImg.src = './assets/game/game-icon.png';
+
 export class GameUI {
   public static drawToolBar() {
     const {
@@ -93,26 +101,49 @@ export class GameUI {
     const { ctx, canvasWidth, canvasHeight } = GameStore;
     // draw background
     if (ctx) {
-      const buttonWidth = 300;
+      const buttonWidth = 250;
       const buttonHeight = 45;
       const buttonXPosition = canvasWidth / 2 - buttonWidth / 2;
-      const buttonYPosition = canvasHeight / 2 + 40;
+      const buttonYPosition = canvasHeight / 2 + 50;
 
-      ctx.fillStyle = '#34495e';
+      ctx.fillStyle = '#414345';
       ctx.fillRect(0, 0, canvasWidth, canvasHeight);
       // start game
       ctx.drawImage(
-        whitePanelImg, buttonXPosition, buttonYPosition - 80, buttonWidth, buttonHeight,
+        brownButton, buttonXPosition, buttonYPosition, buttonWidth, buttonHeight,
       );
       ElementsPositions.startButton = {
         x: buttonXPosition,
-        y: buttonYPosition - 80,
+        y: buttonYPosition,
         width: buttonWidth,
         height: buttonHeight,
       };
-      ctx.font = ' 35px Georgia, serif';
-      ctx.fillStyle = '#1976d2';
-      ctx.fillText('START GAME', buttonXPosition + 50, buttonYPosition - 45);
+      ctx.drawImage(
+        brownButton, buttonXPosition, buttonYPosition + 60, buttonWidth, buttonHeight,
+      );
+      ElementsPositions.fullScreenButton = {
+        x: buttonXPosition,
+        y: buttonYPosition + 60,
+        width: buttonWidth,
+        height: buttonHeight,
+      };
+      ctx.drawImage(
+        brownButton, buttonXPosition, buttonYPosition + 120, buttonWidth, buttonHeight,
+      );
+      ElementsPositions.exitButton = {
+        x: buttonXPosition,
+        y: buttonYPosition + 120,
+        width: buttonWidth,
+        height: buttonHeight,
+      };
+      ctx.drawImage(gameImg, canvasWidth / 2 - gameImg.width / 2, 100);
+      ctx.font = '25px Georgia, serif';
+      ctx.fillStyle = '#2a2a2d';
+      ctx.fillText('Start Game', buttonXPosition + 62, buttonYPosition + 29);
+      ctx.fillText('Fullscreen', buttonXPosition + 70, buttonYPosition + 89);
+      ctx.fillStyle = '#870000';
+      ctx.font = '23px Georgia, serif';
+      ctx.fillText('Back to Home', buttonXPosition + 55, buttonYPosition + 149);
     }
   }
 }

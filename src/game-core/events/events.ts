@@ -3,6 +3,7 @@ import ElementsPositions from '../store/elements-positions';
 import { collision } from '../utils/collision';
 import { handleDefenderClick } from '../entities/defender';
 import { Game } from '../main';
+import { toggleFullScreen } from '../utils/fullscreen';
 
 export const mouseMoveHandler = ($event: MouseEvent) => {
   const { cursorState, canvasPosition } = GameStore;
@@ -30,9 +31,13 @@ export const clickEventHandler = () => {
 
   if (cursorState.x && cursorState.y) {
     if (!isStarted) { // start screen
-      const isOverTheButton = collision(ElementsPositions.startButton, cursorState);
-      if (isOverTheButton) {
+      const isStartGame = collision(ElementsPositions.startButton, cursorState);
+      const isFullScreenToggle = collision(ElementsPositions.fullScreenButton, cursorState);
+      if (isStartGame) {
         GameStore.isStarted = true;
+      }
+      if (isFullScreenToggle) {
+        toggleFullScreen();
       }
     } else { // game already in progress
       const isRestartButton = collision(ElementsPositions.restartButton, cursorState);

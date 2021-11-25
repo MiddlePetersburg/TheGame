@@ -22,6 +22,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "linebreak-style": "off",
     "no-use-before-define": "off",
     "no-cond-assign": "off",
     "no-plusplus": "off",

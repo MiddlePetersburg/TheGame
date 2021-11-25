@@ -15,6 +15,10 @@ class ElementsPositions {
   public pauseButton: IElementPosition = basePosition;
 
   public playButton: IElementPosition = basePosition;
+
+  public fullScreenButton: IElementPosition = basePosition;
+
+  public exitButton: IElementPosition = basePosition;
 }
 
 export default new ElementsPositions();
