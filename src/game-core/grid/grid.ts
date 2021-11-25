@@ -39,17 +39,3 @@ export class Grid {
     }
   }
 }
-
-export const mouseMoveHandler = ($event: MouseEvent) => {
-  const { cursorState, canvasPosition } = GameStore;
-  if (canvasPosition) {
-    cursorState.x = $event.x - canvasPosition.left;
-    cursorState.y = $event.y - canvasPosition.top;
-  }
-};
-
-export const mouseLeaveHandler = () => {
-  const { cursorState } = GameStore;
-  cursorState.x = undefined;
-  cursorState.y = undefined;
-};

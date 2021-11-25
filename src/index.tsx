@@ -6,10 +6,12 @@ import store from './redux/store';
 
 import './styles/styles.scss';
 
-const rootElement = document.getElementById('root');
+window.onload = () => {
+  const rootElement = document.getElementById('root');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, rootElement,
-);
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>, rootElement,
+  );
+};

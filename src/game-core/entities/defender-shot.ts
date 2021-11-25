@@ -1,28 +1,32 @@
 import GameStore from '../store/game-store';
+import { collision } from '../utils/collision';
 
 export class DefenderShot {
   public x: number;
 
   public y: number;
 
-  public width: number = 10;
+  public width: number = 6;
 
-  public height: number = 10;
+  public height: number = 6;
 
-  public power: number = 25;
+  public power: number = 0;
 
   public speed: number = 5;
 
-  constructor(x: number, y: number) {
+  public scaleForPower = 20;
+
+  constructor(x: number, y: number, level: number) {
     this.x = x;
     this.y = y;
+    this.power += level * this.scaleForPower;
   }
 
   public draw() {
     const { ctx } = GameStore;
     if (ctx) {
       this.x += this.speed;
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = '#6DD5ED';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
       ctx.fill();
@@ -42,12 +46,7 @@ export const drawDefendersShots = () => {
 
     for (let j = 0; j < enemies.length; j++) {
       if (enemies[j] && defendersShots[i]) {
-        const isShotInsideEnemy = !(
-          defendersShots[i].x > enemies[j].x1 + enemies[j].x2
-          || defendersShots[i].x + defendersShots[i].width < enemies[j].x1
-          || defendersShots[i].y > enemies[j].y1 + enemies[j].y2
-          || defendersShots[i].y + defendersShots[i].height < enemies[j].y1
-        );
+        const isShotInsideEnemy = collision(defendersShots[i], enemies[j]);
 
         if (isShotInsideEnemy) {
           enemies[j].health -= defendersShots[i].power;
