@@ -12,6 +12,7 @@ import Signup from '../components/pages/Signup';
 
 // Constants
 import { APIPaths } from '../constants/api';
+import { getProfile } from '../api/axiosClient';
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 const SignupContainer = ({
@@ -19,24 +20,11 @@ const SignupContainer = ({
   setError,
   error,
   changeField,
-  setAllUserFields,
 }: any) => {
   const history = useNavigate();
   // @ts-ignore
-  useEffect(async () => {
-    try {
-      const userInfo = await axios.get(APIPaths.GET_USER, {
-        withCredentials: true,
-      });
-      setUser(userInfo.data);
-      setAllUserFields(userInfo.data);
-      if (!localStorage.getItem('userId') || localStorage.getItem('userId') === 'undefined') {
-        localStorage.setItem('userId', userInfo.data.id);
-      }
-    } catch (e: any) {
-      setError(e.response.data.reason);
-      console.log('err', e);
-    }
+  useEffect(() => {
+    getProfile();
   }, []);
   useEffect(() => () => setError(''), []);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -65,11 +53,7 @@ const SignupContainer = ({
       console.log(e);
     }
   };
-  return (
-    <>
-      <Signup handleSubmit={handleSubmit} error={error} />
-    </>
-  );
+  return <Signup handleSubmit={handleSubmit} error={error} />;
 };
 
 const mapStateToProps = (state: any) => ({

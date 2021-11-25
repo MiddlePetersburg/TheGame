@@ -1,4 +1,10 @@
 import axios from 'axios';
+import { APIPaths } from '../constants/api';
+import store from '../redux/store';
+
+// Actions
+import { setUser, setAllUserFields } from '../redux/actions/user';
+import { setError } from '../redux/actions/errors';
 
 const axiosClient = axios.create({
   baseURL: 'https://ya-praktikum.tech/api/v2/',
@@ -7,3 +13,21 @@ const axiosClient = axios.create({
 });
 
 export default axiosClient;
+
+export const getProfile = async () => {
+  if (localStorage.getItem('userId')) {
+    try {
+      const userInfo = await axios.get(APIPaths.GET_USER, {
+        withCredentials: true,
+      });
+      store.dispatch(setUser(userInfo.data));
+      store.dispatch(setAllUserFields(userInfo.data));
+      if (!localStorage.getItem('userId') || localStorage.getItem('userId') === 'undefined') {
+        localStorage.setItem('userId', userInfo.data.id);
+      }
+    } catch (e: any) {
+      store.dispatch(setError(e.response.data.reason));
+      console.log('err', e);
+    }
+  }
+};

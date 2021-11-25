@@ -5,14 +5,14 @@ import axios from 'axios';
 
 // Actions
 import { setError } from '../redux/actions/errors';
-// @ts-ignore
-import { setUser, changeField, setAllUserFields } from '../redux/actions/user';
+import { setUser, changeField } from '../redux/actions/user';
 
 // Components
 import Profile from '../components/pages/Profile';
 
 // Constants
 import { APIPaths } from '../constants/api';
+import { getProfile } from '../api/axiosClient';
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 const ProfileContainer = ({
@@ -20,7 +20,6 @@ const ProfileContainer = ({
   setError,
   setUser,
   changeField,
-  setAllUserFields,
   login,
   password,
   email,
@@ -29,22 +28,8 @@ const ProfileContainer = ({
   secondName,
 }:any) => {
   const history = useNavigate();
-  // @ts-ignore
-  useEffect(async () => {
-    try {
-      const userInfo = await axios.get(APIPaths.GET_USER, {
-        withCredentials: true,
-      });
-      setUser(userInfo.data);
-      setAllUserFields(userInfo.data);
-      if (!localStorage.getItem('userId') || localStorage.getItem('userId') === 'undefined') {
-        localStorage.setItem('userId', userInfo.data.id);
-      }
-      history('/profile');
-    } catch (e: any) {
-      setError(e.response.data.reason);
-      console.log('err', e);
-    }
+  useEffect(() => {
+    getProfile();
   }, []);
   useEffect(() => {
     if (!localStorage.getItem('userId') || !user) {
@@ -113,5 +98,5 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default connect(mapStateToProps, {
-  setError, setUser, changeField, setAllUserFields,
+  setError, setUser, changeField,
 })(ProfileContainer);
