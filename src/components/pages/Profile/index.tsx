@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Avatar, TextField, Box, Button,
-} from '@mui/material';
+import { TextField, Box, Button } from '@mui/material';
 
 import './Profile.scss';
 
@@ -16,13 +14,12 @@ const Profile = ({
   handleChangeValue,
 }: any) => (
   <div className="profile">
-    <h2 className="profile__title">Профиль</h2>
+    <h2 className="profile__title">Profile</h2>
     <div className="profile__tab">
       <div className="tab__left">
-        <h3>Основная информация</h3>
+        <h3>General Information</h3>
       </div>
       <div className="tab__right">
-        <Avatar alt="user__avatar" sx={{ width: 70, height: 70 }} />
         <Box className="tab__row">
           <TextField
             size="small"
@@ -31,27 +28,25 @@ const Profile = ({
             value={login}
             name="login"
           />
-          <Button variant="text" onClick={handleChangeValue}>Изменить</Button>
         </Box>
         <Box className="tab__row">
           <TextField
-            label="Фамилия"
+            size="small"
+            label="First Name"
+            onChange={handleChangeField}
+            value={firstName}
+            name="firstName"
+          />
+
+        </Box>
+        <Box className="tab__row">
+          <TextField
+            label="Second Name"
             onChange={handleChangeField}
             size="small"
             value={secondName}
             name="secondName"
           />
-          <Button variant="text" onClick={handleChangeValue}>Изменить</Button>
-        </Box>
-        <Box className="tab__row">
-          <TextField
-            size="small"
-            label="Имя"
-            onChange={handleChangeField}
-            value={firstName}
-            name="firstName"
-          />
-          <Button variant="text" onClick={handleChangeValue}>Изменить</Button>
         </Box>
         <Box className="tab__row">
           <TextField
@@ -61,19 +56,36 @@ const Profile = ({
             value={email}
             name="email"
           />
-          <Button variant="text" onClick={handleChangeValue}>Изменить</Button>
         </Box>
         <Box className="tab__row">
           <TextField
-            label="Телефон"
+            label="Phone"
             size="small"
             onChange={handleChangeField}
             value={phone}
             name="phone"
           />
-          <Button variant="text" onClick={handleChangeValue}>Изменить</Button>
         </Box>
-        <Button type="submit" fullWidth variant="contained" onClick={() => handleLogout()} sx={{ mt: 3, mb: 2 }}>Выйти</Button>
+        <div className="profile-buttons">
+          <Button
+            className="profile-buttons__button"
+            type="button"
+            variant="contained"
+            onClick={handleChangeValue}
+            sx={{ mr: 1 }}
+          >
+            Save
+          </Button>
+          <Button
+            className="profile-buttons__button"
+            type="button"
+            variant="contained"
+            color="error"
+            onClick={() => handleLogout()}
+          >
+            Sign Out
+          </Button>
+        </div>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@
 .navigation-list {
   display: grid;
   align-items: center;
+  width: 220px;
 }
 
 .navigation-list__link {
@@ -21,7 +22,7 @@
   line-height: 1;
 
   &:hover {
-    background-color: $kind_of_black_color;
+    background-color: rgba($kind_of_black_color, 0.4);
   }
 }
 

@@ -12,7 +12,7 @@ export default [
     path: '/',
     component: HomeContainer,
     icon: 'Home',
-    text: 'Домашняя страница',
+    text: 'Home',
     meta: {
       id: 1,
     },
@@ -21,7 +21,7 @@ export default [
     path: '/login',
     component: LoginContainer,
     icon: 'Login',
-    text: 'Логин',
+    text: 'Sign In',
     meta: {
       id: 2,
     },
@@ -30,7 +30,7 @@ export default [
     path: '/signup',
     component: SignupContainer,
     icon: 'AppRegistration',
-    text: 'Регистрация',
+    text: 'Sign Up',
     meta: {
       id: 3,
     },
@@ -39,7 +39,7 @@ export default [
     path: '/game',
     component: GameContainer,
     icon: 'SportsEsports',
-    text: 'Игра',
+    text: 'Game',
     meta: {
       id: 4,
     },
@@ -48,7 +48,7 @@ export default [
     path: '/profile',
     component: ProfileContainer,
     icon: 'Person',
-    text: 'Аккаунт',
+    text: 'Profile',
     meta: {
       id: 5,
     },
@@ -57,7 +57,7 @@ export default [
     path: '/board',
     component: BoardContainer,
     icon: 'Dashboard',
-    text: 'Борд',
+    text: 'Leaderboard',
     meta: {
       id: 6,
     },

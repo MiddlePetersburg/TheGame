@@ -5,6 +5,16 @@
   display: grid;
   row-gap: 2rem;
 
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &__button {
+      width: fit-content;
+    }
+  }
+
   .profile__tab {
     background-color: $white_clr;
     padding: 30px 28px;
