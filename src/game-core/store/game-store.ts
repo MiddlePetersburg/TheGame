@@ -8,29 +8,15 @@ class GameStore {
   // Canvas
   public canvas: HTMLCanvasElement | undefined;
 
-  private canvasWidthPrivate: number = 0;
+  public canvasWidth: number = 0;
 
-  public get canvasWidth() {
-    return this.canvasWidthPrivate;
-  }
-
-  public set canvasWidth(value: number) {
-    this.canvasWidthPrivate = value;
-  }
-
-  public canvasHeightPrivate: number = 0;
-
-  public get canvasHeight() {
-    return this.canvasHeightPrivate;
-  }
-
-  public set canvasHeight(value: number) {
-    this.canvasHeightPrivate = value;
-  }
+  public canvasHeight: number = 0;
 
   public ctx: CanvasRenderingContext2D | undefined;
 
   public canvasPosition: DOMRect | undefined;
+
+  public animationListener: number | undefined;
 
   // Grid
   public readonly gridCellSize = 100;
@@ -89,8 +75,9 @@ class GameStore {
     this.score = 0;
     this.health = 3;
     this.level = 1;
-    this.energy = 60;
+    this.energy = 30;
     this.defenders = [];
+    this.enemyInterval = 300;
     this.enemies = [];
     this.defendersShots = [];
     this.enemiesLineNumbers = [];

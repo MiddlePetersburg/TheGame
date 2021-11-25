@@ -12,9 +12,6 @@ import {
 } from './events/events';
 
 export class Game {
-  // Listeners
-  private animationListener: number | undefined;
-
   private readonly canvasRef: HTMLCanvasElement;
 
   constructor(canvasRef: HTMLCanvasElement) {
@@ -30,33 +27,34 @@ export class Game {
     Game.initEventHandlers();
     // graw start screen
     GameUI.drawStartScreen();
-
-    const animation = () => {
-      const {
-        ctx, isGameOver, isStarted, isPause,
-      } = GameStore;
-      if (ctx) {
-        if (isStarted && !isPause) {
-          // clear canvas
-          Grid.clearCanvas();
-          // draw game
-          Grid.draw();
-          GameUI.drawToolBar();
-          drawDefenders();
-          drawDefendersShots();
-          drawEnemies();
-          Game.handleGameLevel();
-        }
-        // handle gameOver
-        if (!isGameOver) {
-          this.animationListener = requestAnimationFrame(animation);
-        } else {
-          GameUI.drawGameOver();
-        }
-      }
-    };
-    animation();
+    // start frames animation
+    Game.animation();
   }
+
+  public static animation = () => {
+    const {
+      ctx, isGameOver, isStarted, isPause,
+    } = GameStore;
+    if (ctx) {
+      if (isStarted && !isPause) {
+        // clear canvas
+        Grid.clearCanvas();
+        // draw game
+        Grid.draw();
+        GameUI.drawToolBar();
+        drawDefenders();
+        drawDefendersShots();
+        drawEnemies();
+        Game.handleGameLevel();
+      }
+      // handle gameOver
+      if (!isGameOver) {
+        GameStore.animationListener = requestAnimationFrame(Game.animation);
+      } else {
+        GameUI.drawGameOver();
+      }
+    }
+  };
 
   private static handleGameLevel() {
     GameStore.frameCount++;
@@ -71,8 +69,8 @@ export class Game {
   public destroyGame() {
     const { canvas } = GameStore;
     GameStore.resetState();
-    if (this.animationListener) {
-      cancelAnimationFrame(this.animationListener);
+    if (GameStore.animationListener) {
+      cancelAnimationFrame(GameStore.animationListener);
     }
     if (canvas) {
       canvas.removeEventListener('mousemove', mouseMoveHandler);

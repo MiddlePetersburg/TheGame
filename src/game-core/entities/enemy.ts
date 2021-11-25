@@ -3,15 +3,15 @@ import GameStore from '../store/game-store';
 export class Enemy {
   public health: number = 50;
 
-  public speed: number = 0.5;
+  public speed: number = 0;
 
-  public x1: number;
+  public x: number;
 
-  public readonly y1: number;
+  public readonly y: number;
 
-  public readonly x2: number;
+  public readonly width: number;
 
-  public readonly y2: number;
+  public readonly height: number;
 
   private readonly padding: number = 8;
 
@@ -19,7 +19,7 @@ export class Enemy {
 
   private readonly enemyImage: HTMLImageElement;
 
-  private frameCount = 0;
+  private frame = 0;
 
   private frameX = 0;
 
@@ -34,54 +34,62 @@ export class Enemy {
   constructor(vPosition: number, level: number) {
     const { gridCellSize, canvasWidth } = GameStore;
     this.enemyLineNumber = vPosition / gridCellSize;
-    this.x1 = canvasWidth;
-    this.y1 = vPosition + this.padding / 2;
-    this.x2 = gridCellSize - this.padding;
-    this.y2 = gridCellSize - this.padding;
+    this.x = canvasWidth;
+    this.y = vPosition + this.padding / 2;
+    this.width = gridCellSize - this.padding;
+    this.height = gridCellSize - this.padding;
     this.enemyImage = new Image();
     this.enemyImage.src = './assets/game/enemy1.png';
     this.enemyImage.onload = () => {
       this.isImageUploaded = true;
     };
-    this.speed *= level;
-    this.health += level * 40;
+    this.speed = 0.5 * level;
+    this.health += level * 30;
   }
 
-  draw() {
-    const { ctx } = GameStore;
-    if (ctx) {
-      // Enemy Health
-      this.x1 -= this.speed;
-      ctx.fillStyle = 'red';
-      ctx.font = '30px Patrick Hand';
-      ctx.fillText(this.health.toString(), this.x1 + 30, this.y1);
-      // Choose Sprite (Animation)
-      if (this.frameCount % 5 === 0) {
-        if (this.frameX < this.maxFrame) {
-          this.frameX++;
-        } else {
-          this.frameX = this.minFrame;
-        }
-      }
+  public draw() {
+    this.frame++;
+    this.moveEnemy();
+    this.drawHealth();
+    this.handleSprites();
+    this.drawImage();
+  }
 
-      if (this.isImageUploaded) {
-        ctx.drawImage(
-          this.enemyImage,
-          this.frameX * this.spriteSideSize,
-          0,
-          this.spriteSideSize,
-          this.spriteSideSize,
-          this.x1 - 20,
-          this.y1 - 20,
-          this.x2 + 35,
-          this.y2 + 35,
-        );
-      }
-      if (this.frameCount > 500) {
-        this.frameCount = 0;
+  private moveEnemy() {
+    this.x -= this.speed;
+  }
+
+  private drawHealth() {
+    if (GameStore.ctx) {
+      GameStore.ctx.fillStyle = 'red';
+      GameStore.ctx.font = '30px Patrick Hand';
+      GameStore.ctx.fillText(this.health.toString(), this.x + 30, this.y);
+    }
+  }
+
+  private handleSprites() {
+    if (this.frame % 5 === 0) {
+      if (this.frameX < this.maxFrame) {
+        this.frameX++;
       } else {
-        this.frameCount++;
+        this.frameX = this.minFrame;
       }
+    }
+  }
+
+  private drawImage() {
+    if (this.isImageUploaded) {
+      GameStore.ctx?.drawImage(
+        this.enemyImage,
+        this.frameX * this.spriteSideSize,
+        0,
+        this.spriteSideSize,
+        this.spriteSideSize,
+        this.x - 20,
+        this.y - 20,
+        this.width + 35,
+        this.height + 35,
+      );
     }
   }
 }
@@ -105,11 +113,11 @@ export const drawEnemies = () => {
         GameStore.enemiesLineNumbers.splice(i, 1);
       }
 
-      GameStore.energy += 10;
+      GameStore.energy += 10 + level;
       GameStore.score += 5;
       GameStore.enemies.splice(i, 1);
       i--;
-    } else if (enemies[i].x1 <= 0) { // if enemy hit you
+    } else if (enemies[i].x <= 0) { // if enemy hit you
       GameStore.health -= 1;
       GameStore.enemies.splice(i, 1);
     }

@@ -49,9 +49,15 @@ export class Defender {
   }
 
   public draw() {
-    const { gridCellSize, enemiesLineNumbers, ctx } = GameStore;
     this.frame++;
-    // FIREBALL
+    this.handleDefenderShot();
+    this.handleSpritesAnimation();
+    this.drawSpriteImage();
+    this.drawDefenderLevel();
+  }
+
+  private handleDefenderShot() {
+    const { gridCellSize, enemiesLineNumbers } = GameStore;
     if (this.frame % this.shotInterval === 0) {
       const isEnemyExistOnThisLine = enemiesLineNumbers
         .indexOf(Math.floor(this.y1 / gridCellSize)) > -1;
@@ -64,7 +70,9 @@ export class Defender {
         this.spriteMaxFrame = 0;
       }
     }
-    // Choose Defender Animation
+  }
+
+  private handleSpritesAnimation(): void {
     if (this.frame % 5 === 0) {
       if (this.spriteY < this.spriteMaxFrame) {
         this.spriteY++;
@@ -72,9 +80,11 @@ export class Defender {
         this.spriteY = this.spriteMinFrame;
       }
     }
-    // Draw Defender Sprite
+  }
+
+  private drawSpriteImage(): void {
     if (this.isImageUploaded) {
-      ctx?.drawImage(
+      GameStore.ctx?.drawImage(
         this.defenderImage,
         0,
         this.spriteY * this.spriteSideSize,
@@ -86,7 +96,9 @@ export class Defender {
         this.y2 + 60,
       );
     }
-    // Draw level:
+  }
+
+  private drawDefenderLevel() {
     this.canvas.fillStyle = 'yellow';
     this.canvas.font = '20px Patrick Hand';
     this.canvas.fillText(`Level: ${this.defenderLevel}`, this.x1 + 20, this.y1 + 10);
