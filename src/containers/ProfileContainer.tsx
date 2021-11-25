@@ -32,7 +32,7 @@ const ProfileContainer = ({
     getProfile();
   }, []);
   useEffect(() => {
-    if (!localStorage.getItem('userId') || !user) {
+    if (!localStorage.getItem('userId') && !user) {
       history('/login');
       setError('Необходимо войти');
     }
