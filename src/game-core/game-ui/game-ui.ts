@@ -110,9 +110,9 @@ export class GameUI {
         width: buttonWidth,
         height: buttonHeight,
       };
-      ctx.font = '35px Patrick Hand, cursive';
+      ctx.font = ' 35px Georgia, serif';
       ctx.fillStyle = '#1976d2';
-      ctx.fillText('START GAME', buttonXPosition + 70, buttonYPosition - 45);
+      ctx.fillText('START GAME', buttonXPosition + 50, buttonYPosition - 45);
     }
   }
 }
