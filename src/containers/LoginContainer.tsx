@@ -40,6 +40,8 @@ const LoginContainer = ({
         },
       });
     } catch (e) {
+      // @ts-ignore
+      setError(e.response.data.reason);
       console.log(e);
     }
     try {
@@ -53,7 +55,6 @@ const LoginContainer = ({
       }
       history('/profile');
     } catch (e: any) {
-      setError(e.response.data.reason);
       console.log('err', e);
     }
   };

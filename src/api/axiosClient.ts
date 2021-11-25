@@ -22,9 +22,7 @@ export const getProfile = async () => {
       });
       store.dispatch(setUser(userInfo.data));
       store.dispatch(setAllUserFields(userInfo.data));
-      if (!localStorage.getItem('userId') || localStorage.getItem('userId') === 'undefined') {
-        localStorage.setItem('userId', userInfo.data.id);
-      }
+      localStorage.setItem('userId', userInfo.data.id);
     } catch (e: any) {
       store.dispatch(setError(e.response.data.reason));
       console.log('err', e);

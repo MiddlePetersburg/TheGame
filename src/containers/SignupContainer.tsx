@@ -24,7 +24,10 @@ const SignupContainer = ({
   const history = useNavigate();
   // @ts-ignore
   useEffect(() => {
-    getProfile();
+    if (localStorage.getItem('userId')) {
+      history('/profile');
+      getProfile();
+    }
   }, []);
   useEffect(() => () => setError(''), []);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
