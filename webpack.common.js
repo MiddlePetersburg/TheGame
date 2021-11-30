@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
