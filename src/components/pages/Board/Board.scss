@@ -1,0 +1,27 @@
+.board {
+  height: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 2rem;
+
+  .table__row {
+    grid-template-columns: 60px 300px 80px 80px;
+    justify-items: flex-start;
+    column-gap: 20px;
+  }
+  .table__row--body > .table__col:first-child {
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+  }
+  .table__col:nth-child(2) {
+    justify-self: flex-start;
+  }
+  .table__col {
+    justify-self: center;
+  }
+  .board__avatar-icon {
+    width: 60px;
+  }
+}
