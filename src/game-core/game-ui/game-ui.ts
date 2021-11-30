@@ -1,22 +1,36 @@
 import GameStore from '../store/game-store';
 import ElementsPositions from '../store/elements-positions';
 import { Grid } from '../grid/grid';
+import { drawRoundedImage } from '../utils/image-rounder';
+import { Spell } from '../entities/spell';
 
 // create White Panel Instance
 const whitePanelImg = new Image();
 whitePanelImg.src = './assets/game/panelW.png';
 
+// create Grey Panel Instance
+const greyPanelImg = new Image();
+greyPanelImg.src = './assets/game/buttonLong_blue.png';
+
 // create White Button Instance
 const buttonImg = new Image();
 buttonImg.src = './assets/game/buttonW.png';
 
-// create White Button Instance
-const brownButton = new Image();
-brownButton.src = './assets/game/buttonB.png';
-
 // create Game Image Instance
-const gameImg = new Image();
-gameImg.src = './assets/game/game-icon.png';
+const gameBackground = new Image();
+gameBackground.src = './assets/game/background-start.png';
+
+// create spells Images
+const spells = {
+  iceSpell: new Image(),
+  fireSpell: new Image(),
+  windSpell: new Image(),
+  imageSideSize: 45,
+};
+
+spells.iceSpell.src = './assets/game/iceSpell.png';
+spells.fireSpell.src = './assets/game/fireSpell.png';
+spells.windSpell.src = './assets/game/windSpell.png';
 
 export class GameUI {
   public static drawToolBar() {
@@ -104,13 +118,12 @@ export class GameUI {
       const buttonWidth = 250;
       const buttonHeight = 45;
       const buttonXPosition = canvasWidth / 2 - buttonWidth / 2;
-      const buttonYPosition = canvasHeight / 2 + 50;
-
-      ctx.fillStyle = '#414345';
-      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+      const buttonYPosition = canvasHeight / 2 - 50;
+      // background
+      ctx.drawImage(gameBackground, 0, 0, canvasWidth, canvasHeight);
       // start game
       ctx.drawImage(
-        brownButton, buttonXPosition, buttonYPosition, buttonWidth, buttonHeight,
+        greyPanelImg, buttonXPosition, buttonYPosition, buttonWidth, buttonHeight,
       );
       ElementsPositions.startButton = {
         x: buttonXPosition,
@@ -119,7 +132,7 @@ export class GameUI {
         height: buttonHeight,
       };
       ctx.drawImage(
-        brownButton, buttonXPosition, buttonYPosition + 60, buttonWidth, buttonHeight,
+        greyPanelImg, buttonXPosition, buttonYPosition + 60, buttonWidth, buttonHeight,
       );
       ElementsPositions.fullScreenButton = {
         x: buttonXPosition,
@@ -128,7 +141,7 @@ export class GameUI {
         height: buttonHeight,
       };
       ctx.drawImage(
-        brownButton, buttonXPosition, buttonYPosition + 120, buttonWidth, buttonHeight,
+        greyPanelImg, buttonXPosition, buttonYPosition + 120, buttonWidth, buttonHeight,
       );
       ElementsPositions.exitButton = {
         x: buttonXPosition,
@@ -136,14 +149,57 @@ export class GameUI {
         width: buttonWidth,
         height: buttonHeight,
       };
-      ctx.drawImage(gameImg, canvasWidth / 2 - gameImg.width / 2, 100);
       ctx.font = '25px Georgia, serif';
-      ctx.fillStyle = '#2a2a2d';
+      ctx.fillStyle = '#34495e';
       ctx.fillText('Start Game', buttonXPosition + 62, buttonYPosition + 29);
+      ctx.fillStyle = '#ffffff';
       ctx.fillText('Fullscreen', buttonXPosition + 70, buttonYPosition + 89);
-      ctx.fillStyle = '#870000';
       ctx.font = '23px Georgia, serif';
       ctx.fillText('Back to Home', buttonXPosition + 55, buttonYPosition + 149);
+    }
+  }
+
+  public static drawSpellBar() {
+    const { ctx } = GameStore;
+    if (ctx) {
+      const margin = 10;
+      const marginTop = 7;
+      // draw background
+      ctx.drawImage(whitePanelImg, 0, 0, spells.imageSideSize * 3 + margin * 4, 60);
+      if (Spell.cooldown === 0) {
+        // eslint-disable-next-line
+        drawRoundedImage(ctx, spells.windSpell, margin, marginTop, spells.imageSideSize, spells.imageSideSize, 5);
+        ElementsPositions.windSpell = {
+          x: margin,
+          y: marginTop,
+          width: spells.imageSideSize,
+          height: spells.imageSideSize,
+        };
+        // eslint-disable-next-line
+        drawRoundedImage(ctx, spells.fireSpell, spells.imageSideSize + margin * 2, marginTop, spells.imageSideSize, spells.imageSideSize, 5);
+        ElementsPositions.fireSpell = {
+          x: spells.imageSideSize + margin * 2,
+          y: marginTop,
+          width: spells.imageSideSize,
+          height: spells.imageSideSize,
+        };
+        // eslint-disable-next-line
+        drawRoundedImage(ctx, spells.iceSpell, spells.imageSideSize * 2 + margin * 3, marginTop, spells.imageSideSize, spells.imageSideSize, 5);
+        ElementsPositions.iceSpell = {
+          x: spells.imageSideSize * 2 + margin * 3,
+          y: marginTop,
+          width: spells.imageSideSize,
+          height: spells.imageSideSize,
+        };
+      } else {
+        ctx.font = '35px Patrick Hand, serif';
+        ctx.fillStyle = '#34495e';
+        ctx.fillText(
+          `\u{23F3} ${Spell.cooldown.toString()}`,
+          47,
+          43,
+        );
+      }
     }
   }
 }

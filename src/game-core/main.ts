@@ -42,6 +42,7 @@ export class Game {
         // draw game
         Grid.draw();
         GameUI.drawToolBar();
+        GameUI.drawSpellBar();
         drawDefenders();
         drawDefendersShots();
         drawEnemies();
