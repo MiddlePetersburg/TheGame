@@ -196,7 +196,7 @@ export class GameUI {
         ctx.fillStyle = '#34495e';
         ctx.fillText(
           `\u{23F3} ${Spell.cooldown.toString()}`,
-          47,
+          43,
           43,
         );
       }
