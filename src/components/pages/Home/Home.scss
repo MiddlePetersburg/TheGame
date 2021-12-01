@@ -1,0 +1,46 @@
+.home {
+  padding: 2rem;
+  display: grid;
+  row-gap: 2rem;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title title"
+    "about about"
+    "description description"
+    "slider information";
+  .home__title {
+    grid-area: title;
+  }
+  .home__about {
+    grid-area: about;
+  }
+  .home__description {
+    grid-area: description;
+    font-family: "Inter-Medium";
+  }
+  .home__slider {
+    grid-area: slider;
+  }
+  .home__information {
+    grid-area: information;
+    display: grid;
+    row-gap: 20px;
+    align-self: flex-start;
+  }
+  .home__slider {
+    max-width: 900px;
+    justify-self: center;
+    height: 630px;
+  }
+  .information__row {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 10px;
+    align-items: center;
+  }
+  .information__row-right {
+    font-family: "Inter-Medium";
+    width: max-content;
+    justify-self: flex-end;
+  }
+}
