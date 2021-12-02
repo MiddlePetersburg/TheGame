@@ -1,8 +1,10 @@
 .home {
+  height: 100%;
   padding: 2rem;
   display: grid;
   row-gap: 2rem;
   grid-template-columns: 1fr auto;
+  overflow-y: auto;
   grid-template-areas:
     "title title"
     "about about"
@@ -43,4 +45,35 @@
     width: max-content;
     justify-self: flex-end;
   }
+  .help__title {
+    margin-bottom: 20px;
+  }
+  .help__list {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .help__list-item {
+    display: grid;
+    row-gap: 20px;
+  }
+  .list-item__text {
+    font-family: "Inter-Medium";
+  }
+  .list-item__img-wrp {
+    display: flex;
+    column-gap: 20px;
+  }
+  .list-item__img {
+    cursor: pointer;
+    width: 300px;
+  }
+}
+.modal-wrp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: lightblue;
+  border: 2px solid #000;
 }
