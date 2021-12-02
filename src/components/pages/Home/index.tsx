@@ -3,8 +3,8 @@ import React from 'react';
 import './Home.scss';
 
 const Home = () => (
-  <div>
-    <h1>Home</h1>
+  <div className="home">
+    <h1>TheGame</h1>
   </div>
 );
 

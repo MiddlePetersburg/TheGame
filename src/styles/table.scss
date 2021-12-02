@@ -1,0 +1,28 @@
+@import "../styles/colors.scss";
+.table {
+  background-color: $white_clr;
+  display: grid;
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto;
+  height: max-content;
+  max-height: 100%;
+}
+.table__row {
+  align-items: center;
+  padding: 15px 10px;
+  display: grid;
+  grid-auto-flow: column;
+  font-family: "Inter-Medium";
+  border-bottom: 1px solid $light_border_clr;
+}
+.table__row:last-child {
+  border-bottom-color: transparent;
+}
+.table__row--header {
+  background-color: $white_clr;
+  position: sticky;
+  top: 0;
+  left: 0;
+  font-family: "Inter-Bold";
+}
