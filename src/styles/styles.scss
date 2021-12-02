@@ -27,6 +27,7 @@ p {
   overflow: hidden;
   display: grid;
   grid-template-rows: 2.5rem 1fr;
+  overflow: hidden;
 }
 
 .main {
@@ -34,5 +35,7 @@ p {
   width: 100%;
   overflow: hidden;
   margin: 0;
+  height: 100%;
+  overflow: hidden;
   background-color: $light_grey_clr;
 }

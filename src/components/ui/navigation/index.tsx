@@ -18,7 +18,7 @@ export const Navigation: React.FC = () => {
   }, [state.show]);
   return (
     <nav className="navigation">
-      <Button onClick={toggleDrawer(true)}><Menu/></Button>
+      <Button onClick={toggleDrawer(true)}><Menu /></Button>
       <Drawer
         open={state.show}
         onClose={toggleDrawer(false)}
