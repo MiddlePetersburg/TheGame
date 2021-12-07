@@ -25,7 +25,6 @@ export const getProfile = async () => {
       localStorage.setItem('userId', userInfo.data.id);
     } catch (e: any) {
       store.dispatch(setError(e.response.data.reason));
-      // eslint-disable-next-line no-console
       console.log('err', e);
     }
   }
