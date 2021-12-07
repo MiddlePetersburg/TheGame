@@ -3,6 +3,7 @@ import { ICursor } from '../models/cursor-position.interface';
 import { GridCell } from '../grid/grid-cell';
 import { Enemy } from '../entities/enemy';
 import { DefenderShot } from '../entities/defender-shot';
+import { Spell } from '../entities/spell';
 
 class GameStore {
   // Canvas
@@ -81,6 +82,7 @@ class GameStore {
     this.enemies = [];
     this.defendersShots = [];
     this.enemiesLineNumbers = [];
+    Spell.resetState();
   }
 }
 

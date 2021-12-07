@@ -19,6 +19,12 @@ class ElementsPositions {
   public fullScreenButton: IElementPosition = basePosition;
 
   public exitButton: IElementPosition = basePosition;
+
+  public windSpell: IElementPosition = basePosition;
+
+  public fireSpell: IElementPosition = basePosition;
+
+  public iceSpell: IElementPosition = basePosition;
 }
 
 export default new ElementsPositions();

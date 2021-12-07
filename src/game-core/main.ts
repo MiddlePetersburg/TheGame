@@ -10,6 +10,7 @@ import {
   mouseMoveHandler,
   resizeWindowHandler,
 } from './events/events';
+import { Spell } from './entities/spell';
 
 export class Game {
   private readonly canvasRef: HTMLCanvasElement;
@@ -42,6 +43,8 @@ export class Game {
         // draw game
         Grid.draw();
         GameUI.drawToolBar();
+        GameUI.drawSpellBar();
+        Spell.handleSpells();
         drawDefenders();
         drawDefendersShots();
         drawEnemies();

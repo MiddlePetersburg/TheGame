@@ -4,6 +4,7 @@ import { collision } from '../utils/collision';
 import { handleDefenderClick } from '../entities/defender';
 import { Game } from '../main';
 import { toggleFullScreen } from '../utils/fullscreen';
+import { Spell } from '../entities/spell';
 
 export const mouseMoveHandler = ($event: MouseEvent) => {
   const { cursorState, canvasPosition } = GameStore;
@@ -43,6 +44,24 @@ export const clickEventHandler = () => {
       const isRestartButton = collision(ElementsPositions.restartButton, cursorState);
       const isPlayButton = collision(ElementsPositions.playButton, cursorState);
       const isPauseButton = collision(ElementsPositions.pauseButton, cursorState);
+      const isWindSpellButton = collision(ElementsPositions.windSpell, cursorState);
+      const isFireSpellButton = collision(ElementsPositions.fireSpell, cursorState);
+      const isIceSpellButton = collision(ElementsPositions.iceSpell, cursorState);
+
+      // Spells
+      if (isWindSpellButton) {
+        Spell.castWind();
+      }
+
+      if (isFireSpellButton) {
+        Spell.castFireBall();
+      }
+
+      if (isIceSpellButton) {
+        Spell.castIceBall();
+      }
+
+      // Game Process
       if (isRestartButton) {
         if (animationListener) {
           cancelAnimationFrame(animationListener);
