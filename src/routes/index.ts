@@ -1,65 +1,75 @@
-import HomeContainer from '../containers/HomeContainer';
-import LoginContainer from '../containers/LoginContainer';
-import SignupContainer from '../containers/SignupContainer';
-import GameContainer from '../containers/GameContainer';
-import ProfileContainer from '../containers/ProfileContainer';
-import BoardContainer from '../containers/BoardContainer';
+import HomeContainer from "../containers/HomeContainer";
+import LoginContainer from "../containers/LoginContainer";
+import SignupContainer from "../containers/SignupContainer";
+import GameContainer from "../containers/GameContainer";
+import ProfileContainer from "../containers/ProfileContainer";
+import BoardContainer from "../containers/BoardContainer";
+import FabricContainer from "../containers/FabricContainer";
 
 // Icons
 
 export default [
   {
-    path: '/',
+    path: "/",
     component: HomeContainer,
-    icon: 'Home',
-    text: 'Home',
+    icon: "Home",
+    text: "Home",
     meta: {
       id: 1,
     },
   },
   {
-    path: '/login',
+    path: "/login",
     component: LoginContainer,
-    icon: 'Login',
-    text: 'Sign In',
+    icon: "Login",
+    text: "Sign In",
     meta: {
       id: 2,
     },
   },
   {
-    path: '/signup',
+    path: "/signup",
     component: SignupContainer,
-    icon: 'AppRegistration',
-    text: 'Sign Up',
+    icon: "AppRegistration",
+    text: "Sign Up",
     meta: {
       id: 3,
     },
   },
   {
-    path: '/game',
+    path: "/game",
     component: GameContainer,
-    icon: 'SportsEsports',
-    text: 'Game',
+    icon: "SportsEsports",
+    text: "Game",
     meta: {
       id: 4,
     },
   },
   {
-    path: '/profile',
-    component: ProfileContainer,
-    icon: 'Person',
-    text: 'Profile',
+    path: "/fabric",
+    component: FabricContainer,
+    icon: "SportsEsports",
+    text: "Fabric",
     meta: {
       id: 5,
     },
   },
   {
-    path: '/board',
-    component: BoardContainer,
-    icon: 'Dashboard',
-    text: 'Leaderboard',
+    path: "/profile",
+    component: ProfileContainer,
+    icon: "Person",
+    text: "Profile",
     meta: {
       id: 6,
+    },
+  },
+  {
+    path: "/board",
+    component: BoardContainer,
+    icon: "Dashboard",
+    text: "Leaderboard",
+    meta: {
+      id: 7,
     },
   },
 ];

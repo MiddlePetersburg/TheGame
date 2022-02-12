@@ -1,12 +1,5 @@
 @import "../../../styles/colors.scss";
 
-.navigation {
-  background-color: $white_clr;
-  border-bottom: 1px solid $light_border_clr;
-  position: relative;
-  z-index: 10;
-}
-
 .navigation-list {
   display: grid;
   align-items: center;
@@ -15,19 +8,16 @@
 
 .navigation-list__link {
   width: 100%;
-  color: $light_grey_clr;
+  color: $main_text_clr;
   font-size: 16px;
-  transition: background-color .3s;
-  padding: .7125rem 2rem;
+  transition: background-color 0.3s;
+  padding: 0.7125rem 2rem;
   line-height: 1;
 
   &:hover {
-    background-color: rgba($kind_of_black_color, 0.4);
+    background-color: rgba($kind_of_black_color, 0.1);
   }
 }
-
-.MuiModal-root {
-  .MuiPaper-root {
-    background-color: $base_clr_2;
-  }
+.navigation__root {
+  background-color: rgba($color: $base_clr_2, $alpha: 0.2);
 }

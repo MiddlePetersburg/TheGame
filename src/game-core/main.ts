@@ -1,16 +1,17 @@
-import { Grid } from './grid/grid';
-import GameStore from './store/game-store';
-import { drawDefenders } from './entities/defender';
-import { GameUI } from './game-ui/game-ui';
-import { drawEnemies } from './entities/enemy';
-import { drawDefendersShots } from './entities/defender-shot';
+import { Grid } from "./grid/grid";
+import GameStore from "./store/game-store";
+import { drawDefenders } from "./entities/defender";
+import { GameUI } from "./game-ui/game-ui";
+import { drawEnemies } from "./entities/enemy";
+import { drawDefendersShots } from "./entities/defender-shot";
+import { endHandler } from "../components/pages/Game/index";
 import {
   clickEventHandler,
   mouseLeaveHandler,
   mouseMoveHandler,
   resizeWindowHandler,
-} from './events/events';
-import { Spell } from './entities/spell';
+} from "./events/events";
+import { Spell } from "./entities/spell";
 
 export class Game {
   private readonly canvasRef: HTMLCanvasElement;
@@ -20,7 +21,7 @@ export class Game {
   }
 
   public start() {
-    // init store
+    // init stores
     Game.initStore(this.canvasRef);
     // init Game Grid
     Grid.create();
@@ -33,9 +34,7 @@ export class Game {
   }
 
   public static animation = () => {
-    const {
-      ctx, isGameOver, isStarted, isPause,
-    } = GameStore;
+    const { ctx, isGameOver, isStarted, isPause } = GameStore;
     if (ctx) {
       if (isStarted && !isPause) {
         // clear canvas
@@ -55,6 +54,7 @@ export class Game {
         GameStore.animationListener = requestAnimationFrame(Game.animation);
       } else {
         GameUI.drawGameOver();
+        endHandler();
       }
     }
   };
@@ -76,20 +76,20 @@ export class Game {
       cancelAnimationFrame(GameStore.animationListener);
     }
     if (canvas) {
-      canvas.removeEventListener('mousemove', mouseMoveHandler);
-      canvas.removeEventListener('mouseleave', mouseLeaveHandler);
-      canvas.removeEventListener('click', clickEventHandler);
-      window.removeEventListener('resize', resizeWindowHandler);
+      canvas.removeEventListener("mousemove", mouseMoveHandler);
+      canvas.removeEventListener("mouseleave", mouseLeaveHandler);
+      canvas.removeEventListener("click", clickEventHandler);
+      window.removeEventListener("resize", resizeWindowHandler);
     }
   }
 
   private static initEventHandlers(): void {
     const { canvas } = GameStore;
     if (canvas) {
-      canvas.addEventListener('mousemove', mouseMoveHandler);
-      canvas.addEventListener('mouseleave', mouseLeaveHandler);
-      canvas.addEventListener('click', clickEventHandler);
-      window.addEventListener('resize', resizeWindowHandler);
+      canvas.addEventListener("mousemove", mouseMoveHandler);
+      canvas.addEventListener("mouseleave", mouseLeaveHandler);
+      canvas.addEventListener("click", clickEventHandler);
+      window.addEventListener("resize", resizeWindowHandler);
     }
   }
 
@@ -97,7 +97,7 @@ export class Game {
     GameStore.canvas = canvasRef;
     GameStore.canvasWidth = canvasRef.width;
     GameStore.canvasHeight = canvasRef.height;
-    GameStore.ctx = canvasRef.getContext('2d') as CanvasRenderingContext2D;
+    GameStore.ctx = canvasRef.getContext("2d") as CanvasRenderingContext2D;
     GameStore.canvasPosition = canvasRef.getBoundingClientRect();
   }
 }

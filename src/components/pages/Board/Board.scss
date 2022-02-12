@@ -6,7 +6,7 @@
   row-gap: 2rem;
 
   .table__row {
-    grid-template-columns: 60px 300px 80px 80px;
+    grid-template-columns: 60px 60px 300px 80px 80px;
     justify-items: flex-start;
     column-gap: 20px;
   }
@@ -15,7 +15,7 @@
     align-items: center;
     font-size: 60px;
   }
-  .table__col:nth-child(2) {
+  .table__col:nth-child(3) {
     justify-self: flex-start;
   }
   .table__col {

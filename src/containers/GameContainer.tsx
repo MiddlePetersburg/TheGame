@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 // Components
-import Game from '../components/pages/Game';
+import { GamePage as Game } from "../components/pages/Game";
 
 // Constants
-import { getProfile } from '../api/axiosClient';
+import { getProfile } from "../api/axiosClient";
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 const GameContainer = () => {
